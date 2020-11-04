@@ -1,4 +1,4 @@
-import { OnInit, Component } from '@angular/core';
+import { OnInit, Component, EventEmitter, Output, Input } from '@angular/core';
 
 @Component({
     selector: 'app-nav-bar',
@@ -7,6 +7,9 @@ import { OnInit, Component } from '@angular/core';
 })
 export class NavBarComponent implements OnInit {
 
+    @Output() menuToggle: EventEmitter<boolean> = new EventEmitter();
+
+    @Input() opened = false;
 
     constructor () {
     }
@@ -14,5 +17,17 @@ export class NavBarComponent implements OnInit {
     ngOnInit(): void {   
     }
 
+    toggle() {
+
+       /*  if (this.opened ) {
+            this.opened = false;
+        }else {
+            this.opened = true;
+        } */
+        this.opened = !this.opened;
+        this.menuToggle.emit(this.opened);
+
+
+    }
 
 }
