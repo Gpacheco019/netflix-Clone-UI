@@ -8,7 +8,7 @@ import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 export class TitleComponent implements OnInit {
 
   @Input() title: any;
-  @ViewChild('trailer', {static: true}) trailer: ElementRef<HTMLVideoElement>; 
+  @ViewChild('trailer', { static: true }) trailer: ElementRef<HTMLVideoElement>; 
 
   constructor() { }
 
@@ -17,7 +17,7 @@ export class TitleComponent implements OnInit {
 
   playVideo(){
 
-    this.trailer.nativeElement.currentTime = 0;
+    
     this.trailer.nativeElement.play();
 
 
@@ -26,6 +26,20 @@ export class TitleComponent implements OnInit {
   stopVideo() {
 
     this.trailer.nativeElement.pause();
+    this.trailer.nativeElement.currentTime = 0;
+
+  }
+
+  getMuted(): boolean {
+
+    return this.trailer.nativeElement.muted;
+
+  }
+
+  toggleSound() {
+
+
+    this.trailer.nativeElement.muted = !this.trailer.nativeElement.muted;
 
   }
 
